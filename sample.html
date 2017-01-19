@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head manifest="sample.manifest">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="學資中心, 學生學習資源中心, 聖約翰科技大學, 學習資源, 學習" />
+<meta name="description" content="聖約翰科技大學-學生學習資源中心" />
+<!--css-->
+<link rel="stylesheet" type="text/css" href="css/Sstyle1.css"/>
+<link rel="stylesheet" type="text/css" href="css/orbit-1.2.3.css"/>
+<!--JQ-->
+<script type="text/javascript" src="js/jquery-1.7.2.js" ></script>
+<script type="text/javascript" src="js/jquery.orbit-1.2.3.min.js"></script>	
+<script type="text/javascript" src="js/SJS1.js" ></script>
+<title>聖約翰科技大學-學生學習資源中心</title>
+</head>
+<body>
+<div id='MainFrame'>
+	<div id='HeaderFrame'>
+		<div id='HF_01'><!--左上綠色那塊-->
+			<div id='HF_011'></div>
+			<div id='HF_012'></div>
+			<div id='HF_013'></div>
+		</div>
+		<div id='HF_02'></div><!--中文LOGO-->
+		<div id='HF_03'></div><!--英文LOGO-->
+		<div id='HF_selector'><!--主選單-->
+			<div id='News' class='selector'></div><!--最新消息-->
+			<div id='Introductions' class='selector'><!--中心介紹-->
+				<div class='SonSelector' id='IntroductionsSon'>
+					<div id='IntroductionsSon1' class='IntroductionsSon'></div>
+					<div id='IntroductionsSon2' class='IntroductionsSon'></div>
+					<div id='IntroductionsSon3' class='IntroductionsSon'></div>
+				</div>
+			</div>
+			<div id='Service' class='selector'><!--服務-->
+				<div class='SonSelector' id='ServiceSon'>
+					<div id='ServiceSon1' class='ServiceSon'></div>
+					<div id='ServiceSon2' class='ServiceSon'></div>
+					<div id='ServiceSon3' class='ServiceSon'></div>
+					<div id='ServiceSon4' class='ServiceSon'></div>
+				</div>
+			</div>
+			<div id='Resources' class='selector'><!--資源-->
+				<div class='SonSelector' id='ResourcesSon'>
+					<div id='ResourcesSon1' class='ResourcesSon'></div>
+					<div id='ResourcesSon2' class='ResourcesSon'></div>
+				</div>
+			</div>
+			<div id='Activities' class='selector'><!--活動-->
+				<!--<div class='SonSelector' id='ActivitiesSon'>
+					<div id='ActivitiesSon1' class='ActivitiesSon'></div>
+					<div id='ActivitiesSon2' class='ActivitiesSon'></div>
+				</div>-->
+			</div>
+			<div id='Message' class='selector'><!--留言板-->
+			</div>
+			<!--<div id='HF_selector2'></div>--><!--選單英文名-->
+		</div>
+	</div>
+	<div id='CenterFrame'>
+		<div id='CF_L'>
+			<!-- 電視牆150X160-->
+			<div id='CF_L_01'>
+				<div id='TV'>
+					<img src='photos/News/136_1.jpg'/>
+					<img src='photos/News/136_2.jpg'/>
+					<img src='photos/News/136_3.jpg'/>
+					<img src='photos/News/136_4.jpg'/>
+				</div>
+			</div>
+			<!-- 左選單-->
+			<div id='CF_L_02'>
+				<div id='LeftLogo'></div>
+				<div id='Downloads' class='LeftSelector'></div>
+				<div id='Methods' class='LeftSelector'></div>
+				<div id='LeftLink01'></div>
+				<div id='LeftLink02'></div>
+				<div id='LeftLink03'></div>
+				<div id='LeftLink04'></div>
+			</div>
+		</div>
+		<!-- 內容-->
+		<div id='CF_C'>
+			<div id='NewsAll' class='All'>
+				<div class='BlueLine'><!--藍色那條-->
+					<div id="NewsText" class="NewsAdd" style="cursor:pointer"></div>
+				</div>
+				<div id="NewsClass">
+				<div id="NewsClass_02"></div>
+				<div id="NewsClass_03"></div>
+				</div>
+				<div id="NewsHr"></div>
+				<div id="NewsCon">
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject width over 55 than relace(...)</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+					<div class='NewsMain' name='NewsP1'>
+					<table class='NewsTable'>
+						<tr>
+							<td class='NewsTd' name='{$no}' id='R'>subject</td>
+							<td style='width:15px;'>
+								<img src="img/NewsFile.png"/>
+							</td>
+							<td width='80px' class='NewsTd' id='L' name='{$addDate}' align='center'>2016/12/12</td>
+						</tr>
+					</table>
+					</div>
+				</div>
+				<table border='0' align='center' id='NewsBottom'><tr><td class='NewsUD' align='center'>上一頁</td><td class='NewsTotal' name='1'>1-2-3-4-5-6-7-8</td><td class='NewsUD' align='center'>下一頁</td></tr></table>
+			</div>
+			<div id="IntroductionsAll" class="All">
+				<div class="BlueLine"><!--藍色那條-->
+					<div id="IntroductionsText" class="InEdit" style="cursor:pointer;"></div>
+				</div>
+				<div id='IntroductionsMain'>
+					<div id='InMain' style='color:{$mainColor};'>{$main}</div>
+					<div id='InImg1' style='padding:0px 0px 1px 1px;'>
+						<img src='photos/Intro/{$dir1}/{$file1}' class='InImg'/>
+					</div>
+					<div id='InText'>".nl2br($contect)."</div>
+					<div class='space'></div>
+					<table align='center' width='82%'>
+						<tr>
+							<td id='InImg2' align='left'>
+								<img src='photos/Intro/{$dir2}/{$file2}' class='InImg'/>
+							</td>
+							<td id='InImg3' align='right'>
+								<img src='photos/Intro/{$dir3}/{$file3}' class='InImg'/>
+							</td>
+						</tr>
+						<tr>
+							<td id='InImg4' align='left'>
+								<img src='photos/Intro/{$dir4}/{$file4}' class='InImg'/>
+							</td>
+							<td id='InImg5' align='right'>
+								<img src='photos/Intro/{$dir5}/{$file5}' class='InImg'/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id='IntroductionsSon1All' class='All'>
+				<div class="BlueLine">
+					<div id='Introductions1Text' class='InEdit1' style='cursor:pointer;'></div>
+				</div>
+				<div id="Introductions1Main">$editorContent
+				</div>
+			</div>
+			<div id='IntroductionsSon2All' class='All'>
+				<div class="BlueLine">
+					<div id='Introductions2Text' class='InEdit2' style='cursor:pointer;' name='3'></div>
+				</div>
+				<div id="Introductions2Main">
+					<div id="Intro2Top"></div><!--灰色那條-->
+					<table width="98%">
+						<tr>
+							<td width='60%' align='left' valign='top'>
+								<div style='margin-top:7px; margin-bottom:7px; font-size:16px; color:#0A008C; font-weight:bold;'>{$main}&nbsp&nbsp{$position}</div>
+								<div style='margin-left:12px; font-weight:bold; height:150px;'>".nl2br($content)."</div>
+								<div style='margin-top:7px; margin-bottom:7px; margin-left:14px; color:#644000; font-size:12px;'>Email：{$email}<br/>
+								電話：{$phone}&nbspext&nbsp{$ext}</div>
+							</td>
+							<td align='center' valign='center' style='background:url(img/intro2Base.png) no-repeat; background-position:center center; width:231px; height:204px;'>
+							<img src='photos/Intro2/{$dir}/{$photo}' style='width:210px; height:196px;'>
+							</td>
+						</tr>
+					</table>
+					<div class='Intro2Hr'></div>
+				</div>
+			</div>
+			<div id='IntroductionsSon3All' class='All'>
+				<div class="BlueLine">
+					<div id="Introductions3Text" class="InEdit3" style="cursor:pointer;"></div>
+				</div>
+				<div id="Introductions3Main">
+					<b style="color:#A00200;">'.nl2br($question).'</b>
+					<br/>
+					<b>'.nl2br($answer).'</b><hr/>
+				</div>
+			</div>
+			<div id='ServiceAll' class='All'>
+				<div class="BlueLine">
+					<div id="ServiceText" class="serEdit2" name="ser" style="cursor:pointer;"></div>
+				</div>
+				<div id="serMain">
+					<div class='serUp' style='cursor:pointer;' name='{$i}'>{$main}</div>
+					<div>{$content}</div><br/>
+					<div class='serUp' style='cursor:pointer;' name='{$i}'>{$main}</div>
+					<div>{$content}</div><br/>
+				</div>
+			</div>
+			<div id='ServiceSon1All' class='All'>
+				<div class="BlueLine">
+					<div id="Service1Text" class="serEdit" name="ser1" style="cursor:pointer;"></div>
+				</div>
+				<div id="ser1TopBtn">
+					<div class="ser1TopSelect" id="ser1_1Btn" name="1"></div>
+					<div class="ser1TopSelect" id="ser1_2Btn" name="2"></div>
+					<div class="ser1TopSelect" id="ser1_3Btn" name="3"></div>
+				</div>
+				<div class="space"></div>
+				<div id="ser1Main1" class="serAll" style="display:none;">
+					$row['_content']
+				</div>
+				<div id="ser1Main2" class="serAll" style="display:none;">
+					$row['_content']
+				</div>
+				<div id="ser1Main3" class="serAll" style="display:none;">
+					<table align="center" style="margin-bottom:5px;"><tr><td>
+						<div class='ser1_3Age' name='' style='border:none;'>學年度</div>
+						<div class="space"></div>
+						<div class='ser1_3Age' name='' style='border:none;'>學年度</div>
+						<div class="space"></div>
+						<div class='ser1_3Age' name='' style='border:none;'>學年度</div>
+						<div class="space"></div>
+						<div class='ser1_3Age' name=''>學年度</div>
+					</td></tr></table>
+					<div class="space"></div>
+					<div id="ser1_3Top"></div>
+					<div id="ser1_3Main">
+					<div class="aa1_frame">
+						<table width="100%" align="center" class="aa1_table">
+							<tr>
+								<td class="aa1_td"><div style="width:160px;">'.$main.'</div></td>
+								<td class="aa1_td"><div style="width:60px;">'.$leader.'</div></td>
+								<td class="aa1_td"><div style="width:60px;">'.$teacher.'</div></td>
+								<td class="aa1_td"><div style="width:12em; font-size:14px; text-align:left;">'.$member.'</div></td>
+								<td class='aa1_td' width='7%' style='cursor:pointer; border-right:none;' onClick='' title='{$file}'><img src='img/NewsFile.png'/></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div id='ServiceSon2All' class='All'>
+				<div class="BlueLine">
+					<div id="Service2Text" class="serEdit" name="ser2" style="cursor:pointer;"></div>
+				</div>
+				<div id="ser2Main">
+					$row['_content']
+				</div>
+			</div>
+			<div id='ServiceSon3All' class='All'>
+				<div class="BlueLine">
+					<div id="Service3Text" class="serEdit" name="ser3" style="cursor:pointer;"></div>
+				</div>
+				<div id="ser3Main">
+					$row['_content']
+				</div>
+			</div>
+			<div id='ServiceSon4All' class='All'>
+				<div class="BlueLine">
+					<div id="Service4Text" class="serEdit" name="ser4" style="cursor:pointer;"></div>
+				</div>
+				<div id="ser4Main">
+					$row['_content']
+				</div>
+			</div>
+			<div id='ActivitiesAll' class='All'>
+				<div class="BlueLine">
+					<div id="ActivitiesText" class="ActEdit" style="cursor:pointer;"></div>
+				</div><div id="Act0Main">
+				<div id="ActTop"></div>
+				<div class="ActTop2"></div>
+				<div id="ActCon">
+					<div class='ActMain' name='ActP1'>
+						<table width='85%' align='center' class='ActTable'>
+							<tr>
+								<td align='left' style='font-size:15px;' name='{$no}' class='ActTi' title='{$content}'>subject over length then ...</td>
+								<td style='font-size:15px; color:#4F4F4F; width:85px;' align='left'>2016/12/12</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="ActBot"></div>
+				<div class="ActBottom1">按鍵盤左右鍵也可換頁喔！</div>
+				<table border="0" align="center" id="ActBottom" class="PageBottom">
+					<tr>
+						<td align="center" width="120px">
+							<div class="ActUD" name="up">上一頁</div>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td align='center'><div class='ActTotal' name='1' style='width:{$wA}px;'>1-2-3-4</div></td>
+								</tr>
+							</table>
+						</td>
+						<td align="center" width="120px"><div class="ActUD" name="down">下一頁</div></td>
+					</tr>
+				</table>
+				<table width="100%" align="center" style="margin-top:7px;">
+					<tr>
+						<td align='center'><a href='{$link}' target='_blank'><img src='{$link}' style='width:130px; height:130px;' title="title"/></a></td>
+						<td align='center'><a href='{$link}' target='_blank'><img src='{$link}' style='width:130px; height:130px;' title="title"/></a></td>
+						<td align='center'><a href='{$link}' target='_blank'><img src='{$link}' style='width:130px; height:130px;' title="title"/></a></td>
+						<td align='center'><a href='{$link}' target='_blank'><img src='{$link}' style='width:130px; height:130px;' title="title"/></a></td>
+					</tr>
+				</table>
+				</div>
+			</div>
+			<!--<div id='ActivitiesSon1All' class='All'>ActivitiesSon1</div>
+			<div id='ActivitiesSon2All' class='All'>ActivitiesSon2</div>-->
+			<div id='ResourcesAll' class='All'>
+				<div class="BlueLine">
+					<div id="ResourcesText" class="ResEdit" style="cursor:pointer;" name="res"></div>
+				</div>
+				<div id="resMain">
+					<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+					<table width="100%">
+						<tr></tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+					</table>
+					<br/>
+					<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+					<table width="100%">
+						<tr></tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+					</table>
+					<br/>
+				</div>
+			</div>
+			<div id='ResourcesSon1All' class='All'>
+				<div class="BlueLine">
+					<div id="Resources1Text" class="ResEdit" style="cursor:pointer;" name="res1"></div>
+				</div>
+			<div id="res1Main">
+				<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+				<table width="100%">
+					<tr></tr>
+					<tr>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+					</tr>
+					<tr>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+					</tr>
+				</table>
+				<br/>
+				<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+				<table width="100%">
+					<tr></tr>
+					<tr>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+					</tr>
+					<tr>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+					</tr>
+				</table>
+				<br/>
+			</div>
+			</div>
+			<div id='ResourcesSon2All' class='All'>
+				<div class="BlueLine">
+					<div id="Resources2Text" class="ResEdit" style="cursor:pointer;" name="res2"></div>
+				</div>
+				<div id="res2Main">
+					<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+					<table width="100%">
+						<tr></tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+					</table>
+					<br/>
+					<span style='color:#33D; font-weight:bold;'>{$name1}</span><br/>
+					<table width="100%">
+						<tr></tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+						<tr>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+							<td width='50%' align='center' class='resTd'><a href='{$url2}' title='{$url2}' target='_blank'>{$name2}</td>
+						</tr>
+					</table>
+					<br/>
+				</div>
+			</div>
+			<div id='DownloadsAll' class='All'>
+				<div class="BlueLine">
+					<div id="DownloadsText" class="dowAdd" style="cursor:pointer;"></div>
+				</div>
+				<div id="dowMain">
+					<div id="DowTop"></div>
+					<div id="DowTopDiv" style="border:1px solid #000; width:470px; margin-left:27px; margin-top:3px; padding:5px;">說明</div>
+					<div class="DowTop2"></div>
+					<table width="90%" align="center" style="border-bottom:1px solid #BDBDBD;">
+						<tr>
+							<td style="font-weight:bold; color:#33D;">'.$class.'</td>
+						</tr>
+					</table>
+					<table width="90%" align="center" style="border-bottom:1px solid #BDBDBD;">
+						<tr>
+							<td style="width:48px; cursor:pointer; color:#00E;" class="dowEdit" align="center" name="1">1</td>
+							<td class="dowTi" title="'.$file.'" name="'.$how1.'" id="'.$dir.'"><div style="width:330px; word-wrap:break-word;">'.$fileName.'</div></td>
+							<td style="width:18%;">2016/12/12</td>
+						</tr>
+						<tr>
+							<td style="width:48px; cursor:pointer; color:#00E;" class="dowEdit" align="center" name="2">2</td>
+							<td class="dowTi" title="'.$file.'" name="'.$how2.'" id="'.$dir.'"><div style="width:330px; word-wrap:break-word;">'.$fileName.'</div></td>
+							<td style="width:18%;">2016/12/12</td>
+						</tr>
+					</table>
+					<table width="90%" align="center" style="border-bottom:1px solid #BDBDBD;">
+						<tr>
+							<td style="font-weight:bold; color:#33D;">'.$class.'</td>
+						</tr>
+					</table>
+					<table width="90%" align="center" style="border-bottom:1px solid #BDBDBD;">
+						<tr>
+							<td style="width:48px; cursor:pointer; color:#00E;" class="dowEdit" align="center" name="1">1</td>
+							<td class="dowTi" title="'.$file.'" name="'.$how3.'" id="'.$dir.'"><div style="width:330px; word-wrap:break-word;">'.$fileName.'</div></td>
+							<td style="width:18%;">2016/12/12</td>
+						</tr>
+						<tr>
+							<td style="width:48px; cursor:pointer; color:#00E;" class="dowEdit" align="center" name="2">2</td>
+							<td class="dowTi" title="'.$file.'" name="'.$how4.'" id="'.$dir.'"><div style="width:330px; word-wrap:break-word;">'.$fileName.'</div></td>
+							<td style="width:18%;">2016/12/12</td>
+						</tr>
+					</table>
+					<div class="ActBot"></div>
+				</div>
+			</div>
+			<div id='MethodsAll' class='All'>
+				<div class="BlueLine">
+					<div id="MethodsText" class="MetEdit" style="cursor:pointer;"></div>
+				</div>
+			<div id="metMain">
+				<div style="border:#4F4F4F 1px solid; box-shadow:#AAA 5px 5px 5px;">
+					<div style="background:#616161; color:#F8F8FF; padding:7px;">相關辦法&nbsp-&nbsp總覽列表</div>
+					<table width="100%" style="background:#D9D9D9; color:#4A4A4A; font-weight:bold; font-size:13px; padding:3px 7px 3px 7px;">
+						<tr>
+							<td>活動辦法</td>
+							<td align="right">最後修訂日期</td>
+						</tr>
+					</table>
+					<table width='100%' class='metCon'>
+						<tr>
+							<td><a name='{$no}' class='metLook'>{$main}</a></td>
+							<td align='right'>2016/12/12</td>
+						</tr>
+					</table>
+					<table width='100%' class='metCon'>
+						<tr>
+							<td><a name='{$no}' class='metLook'>{$main}</a></td>
+							<td align='right'>2016/12/12</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			</div>
+			<div id='MessageAll' class='All'>
+				<div class='BlueLine'>
+					<div id="MessageText"></div>
+				</div>
+				<div id='MessageMain'>
+				<div id="MesTop" style="overflow:hidden; border:1px solid #000; cursor:pointer;" class="MesTxEdit">
+					<table id="MesLite" style="width:'.$width.'px;">
+					<tr>
+						<td id="MesLite1">
+							<table>
+								<tr>
+									<td id="MesTx">　　　　　'.$text.'　　　　　</td>
+								</tr>
+							</table>
+						</td>
+						<td id="MesLite2"></td>
+						<td id="MesLite3"></td>
+					</tr>
+					</table>
+				</div>
+					<table width="100%" align="center" id="MesTitle">
+						<tr>
+							<td width="15%" style="color:#F7F7F7;">時間</td>
+							<td width="60%" style="color:#F7F7F7;">主題</td>
+							<td width="15%" style="color:#F7F7F7;">發言者</td>
+							<td width="10%" style="color:#F7F7F7;">回覆</td>
+						</tr>
+					</table><div id="MesCon">
+					<div class='MesMain' name='MesP1'>
+					<table width='100%' align='center' class='MesContect'>
+						<tr>
+							<td width='17%' align='center' style='color:#5F5F5F; border-left:#4F4F4F double 3px; font-size:15px;'>2016/12/12</td>
+							<td align='left' name='{$no}' class='MeMain'>about class som....</td>
+							<td width='4%' align='left'><img src="img/NewsFile.png"/></td>
+							<td width='15%' align='center'><div style='width:70px;'>{$name}</div></td>
+							<td width='10%' align='center' style='color:#4F4F4F; border-right:#4F4F4F double 3px;'>3</td>
+						</tr>
+					</table>
+					</div>
+					</div>
+					<table border='0' align='center' id='NewsBottom'><tr><td class='NewsUD' align='center'>上一頁</td><td class='NewsTotal'>1-2-3-4-5-6-7-8</td><td class='NewsUD' align='center'>下一頁</td></tr></table>
+				</div>
+			</div>
+		</div>
+		<!-- COPYRIGHT-->
+		<div class='space'></div>
+		<div id='FooterFrame'>
+			<div id='Footer_01'></div>
+			<div id='Footer_02'>
+			<table border='0' id='FooterText' width='100%'><tr><td class='FooTd' align='center'>Copyright&copy;聖約翰科技大學_夢工場製作</td></tr><tr><td class='FooTd' align='center'>
+
+251新北市淡水區淡金路四段499號 電話:02-2801-3131轉6892</td></tr><tr><td class='FooTd' align='center'>
+
+Address: 499,Sec. 4, Tam King Road Tamsui, Taipei, Taiwan R.O.C</td></tr></table>
+			</div>
+			<div id='Footer_03'></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
