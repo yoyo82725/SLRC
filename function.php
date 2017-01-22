@@ -4,7 +4,7 @@ function setdb(){
 	$hostname = 'localhost';
 	$username = 'root';
 	$connDb='studentlearn';
-	$password = '123';
+	$password = '';
 	$link = mysql_connect($hostname, $username, $password) or die(mysql_error());
 	mysql_select_db($connDb) or die("Could not select database");
 	mysql_query("SET NAMES utf8");

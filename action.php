@@ -5,10 +5,10 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 require('function.php');
 @$b = $_GET['b'];
 if(@$_SESSION['login']==1){//登入認證
-	@$aa = $_GET['aa'];
-	if($aa == 1){//活動集錦處理
-		$t=$_GET['t'];//1新增照2刪照3改文4刪文5新增文
-		if($t==1){//新增照
+	@$action = $_GET['aa'];
+	if($action == 1){//活動集錦處理
+		$move=$_GET['t'];//1新增照2刪照3改文4刪文5新增文
+		if($move==1){//新增照
 			$file=$_FILES['userfile']['tmp_name'];
 			if(is_uploaded_file($file)){
 				@$main=$_POST['_main'];
@@ -22,7 +22,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs('history.go(-1);');
 		}
-		else if($t==2){//刪照
+		else if($move==2){//刪照
 			@$no=$_POST['no'];
 			$res=query("SELECT * FROM `act` WHERE `no`='{$no}' LIMIT 1");
 			if($row=mysql_fetch_array($res)){
@@ -33,7 +33,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}
 			js::usejs('opener.location.href="index.php?act"; history.go(-1);');
 		}
-		else if($t==3){//改文
+		else if($move==3){//改文
 			@$date=$_POST['date'];
 			@$no=$_POST['no'];
 			if(preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/",$date)){
@@ -49,7 +49,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs('alert("日期格式不符合！"); location');
 		}
-		else if($t==4){//刪文+內照片
+		else if($move==4){//刪文+內照片
 			@$no=$_POST['no'];
 			$res=query("SELECT * FROM `act` WHERE `_to`='{$no}'");
 			while($row=mysql_fetch_array($res)){//刪照
@@ -64,7 +64,7 @@ if(@$_SESSION['login']==1){//登入認證
 			else
 				js::usejs('alert("刪除失敗！請聯絡網站設計人員！aa1t4_2"); history.go(-1);');
 		}
-		else if($t==5){//新增文
+		else if($move==5){//新增文
 			@$date=$_POST['date'];
 			if(preg_match("/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/",$date)){
 				@$main=$_POST['_main'];
@@ -80,16 +80,16 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("日期格式不符合！"); history.go(-1)');
 		}
 	}
-	else if($aa == 2){//改留言板跑馬燈文字
-		$tx=$_GET['tx'];//要改的文字
-		if(mb_strwidth($tx)<30){//寬度太少
+	else if($action == 2){//改留言板跑馬燈文字
+		$movex=$_GET['tx'];//要改的文字
+		if(mb_strwidth($movex)<30){//寬度太少
 			js::usejs('alert("請至少有10個中文字的寬度！"); location.href="index.php?mes";');
 		}else{
-			file::write('text/MesTop.txt',$tx);
+			file::write('text/MesTop.txt',$movex);
 			js::usejs('location.href="index.php?mes";');
 		}
 	}
-	else if($aa == 3){//服務項目01234編輯+新增+ser1_3成果
+	else if($action == 3){//服務項目01234編輯+新增+ser1_3成果
 		@$n=$_GET['n'];//ser1_3成果 1新增大項2修改大項3新增小項4修改小項5刪除小項6刪除大項7刪成果檔案
 		if($n){//ser1_3成果發表
 			if($n==1){//新增學年(大項)
@@ -107,7 +107,7 @@ if(@$_SESSION['login']==1){//登入認證
 				@$no=$_POST['no'];
 				@$main=$_POST['_main'];//組名
 				@$leader=$_POST['leader'];
-				@$teacher=$_POST['teacher'];
+				@$moveeacher=$_POST['teacher'];
 				@$content=$_POST['content'];//組員
 				@$file=$_FILES['userfile']['tmp_name'];
 				if(is_uploaded_file($file)){//有檔案
@@ -118,7 +118,7 @@ if(@$_SESSION['login']==1){//登入認證
 				}else{
 					@$dir=NULL; @$fileName=NULL;
 				}
-				if(query("INSERT INTO `ser`(`_main`,`_content`,`_leader`,`_teacher`,`_dir`,`_file`,`_class`) VALUES('{$main}','{$content}','{$leader}','{$teacher}','{$dir}','{$fileName}','{$no}')"))
+				if(query("INSERT INTO `ser`(`_main`,`_content`,`_leader`,`_teacher`,`_dir`,`_file`,`_class`) VALUES('{$main}','{$content}','{$leader}','{$moveeacher}','{$dir}','{$fileName}','{$no}')"))
 					js::usejs('alert("新增成功！"); opener.location.href="index.php?ser1_3"; location.href="window.php?aa=17&no='.$no.'";');
 				else
 					js::usejs('alert("新增失敗！請聯絡網站設計人員！"); history.go(-1);');
@@ -127,7 +127,7 @@ if(@$_SESSION['login']==1){//登入認證
 				@$no=$_POST['no'];
 				@$main=$_POST['_main'];//組名
 				@$leader=$_POST['leader'];
-				@$teacher=$_POST['teacher'];
+				@$moveeacher=$_POST['teacher'];
 				@$content=$_POST['content'];//組員
 				@$file=$_FILES['userfile']['tmp_name'];
 				if(is_uploaded_file($file)){//有上傳檔案
@@ -148,12 +148,12 @@ if(@$_SESSION['login']==1){//登入認證
 					mkdir("files/ser1_3/{$dir}");//新建目錄
 					move_uploaded_file($file,iconv('utf-8','big5',"files/ser1_3/{$dir}/{$fileName}"));
 					//改資料庫
-					if(query("UPDATE `ser` SET `_main`='{$main}',`_content`='{$content}',`_leader`='{$leader}',`_teacher`='{$teacher}',`_dir`='{$dir}',`_file`='{$fileName}' WHERE `no`='{$no}' LIMIT 1"))
+					if(query("UPDATE `ser` SET `_main`='{$main}',`_content`='{$content}',`_leader`='{$leader}',`_teacher`='{$moveeacher}',`_dir`='{$dir}',`_file`='{$fileName}' WHERE `no`='{$no}' LIMIT 1"))
 						js::usejs('alert("修改成功！"); opener.location.href="index.php?ser1_3"; window.close();');
 					else
 						js::usejs('alert("修改失敗！請聯絡網站設計人員！aa3n4_1"); history.go(-1);');
 				}else{//沒上傳檔案 只改資料庫
-					if(query("UPDATE `ser` SET `_main`='{$main}',`_content`='{$content}',`_leader`='{$leader}',`_teacher`='{$teacher}' WHERE `no`='{$no}' LIMIT 1"))
+					if(query("UPDATE `ser` SET `_main`='{$main}',`_content`='{$content}',`_leader`='{$leader}',`_teacher`='{$moveeacher}' WHERE `no`='{$no}' LIMIT 1"))
 						js::usejs('alert("修改成功！"); opener.location.href="index.php?ser1_3"; window.close();');
 					else
 						js::usejs('alert("修改失敗！請聯絡網站設計人員！aa3n4_2"); history.go(-1);');
@@ -212,12 +212,12 @@ if(@$_SESSION['login']==1){//登入認證
 			}
 		}
 		else{//服務項目01234編輯+新增
-			@$t=$_GET['t'];//ser1 ser2 ser3
+			@$move=$_GET['t'];//ser1 ser2 ser3
 			@$no=$_POST['no'];
 			if($no){//是修改
 				@$content=$_POST['content'];
 				if(query("UPDATE `ser` SET `_content`='{$content}' WHERE `no`='{$no}' LIMIT 1"))
-					js::usejs("alert('修改成功！'); opener.location.href='index.php?{$t}'; window.close();");
+					js::usejs("alert('修改成功！'); opener.location.href='index.php?{$move}'; window.close();");
 				else
 					js::usejs('alert("修改失敗！請聯絡網站設計人員！"); history.go(-1);');
 			}
@@ -226,7 +226,7 @@ if(@$_SESSION['login']==1){//登入認證
 				@$content=$_POST['content'];
 				if($main && $content){
 					if(query("INSERT INTO `ser`(`_main`,`_content`,`_class`) VALUES('{$main}','{$content}','ser')"))
-						js::usejs("alert('新增成功！'); opener.location.href='index.php?{$t}'; window.close();");
+						js::usejs("alert('新增成功！'); opener.location.href='index.php?{$move}'; window.close();");
 					else
 						js::usejs('alert("新增失敗！請聯絡網站設計人員！"); history.go(-1);');
 				}else
@@ -234,28 +234,28 @@ if(@$_SESSION['login']==1){//登入認證
 			}
 		}
 	}
-	else if($aa == 4){//預覽文章返回(刪除檔案)
+	else if($action == 4){//預覽文章返回(刪除檔案)
 		@$path = $_POST['path'];
 		@$dir = $_POST['dir'];//files/dir
 		@unlink(iconv('utf-8','big5',"{$path}"));
 		@RmDir("{$dir}");
 		js::location('window.php?aa=1');
 	}
-	else if($aa == 5){//文章確認送出
+	else if($action == 5){//文章確認送出
 		@$dir=$_POST['dir'];
 		@$fileName=$_POST['fileName'];
 		@$main=$_POST['main'];
-		@$things=$_POST['things'];
+		@$movehings=$_POST['things'];
 		@$date=$_POST['date'];
 		@$size=$_POST['size'];
 		@$cls=$_POST['cls'];
 		$ip=getip();
-		if(query("INSERT INTO `news`(`_class`,`_main`,`_things`,`_file`,`_dir`,`_size`,`_addDate`,`_ip`) VALUES('{$cls}','{$main}','{$things}','{$fileName}','{$dir}','{$size}','{$date}','{$ip}')"))
+		if(query("INSERT INTO `news`(`_class`,`_main`,`_things`,`_file`,`_dir`,`_size`,`_addDate`,`_ip`) VALUES('{$cls}','{$main}','{$movehings}','{$fileName}','{$dir}','{$size}','{$date}','{$ip}')"))
 			js::usejs("opener.location.href='index.php?news'; alert('公告已發佈！'); window.close();");
 		else
 			js::usejs("alert('公告發佈失敗！請聯絡網站設計人員！'); window.close();");
 	}
-	else if($aa == 6){//刪除news
+	else if($action == 6){//刪除news
 			@$no=$_POST['no'];
 			@$file=$_POST['file'];
 			@$dir=$_POST['dir'];
@@ -269,12 +269,12 @@ if(@$_SESSION['login']==1){//登入認證
 			else
 				js::usejs("alert('公告刪除失敗！請聯絡網站設計人員！'); window.close();");
 	}
-	else if($aa == 7){//修改news
-		@$t=$_GET['t'];
+	else if($action == 7){//修改news
+		@$move=$_GET['t'];
 		@$no=$_GET['no'];
-		if($t=='file'){//刪除檔案
+		if($move=='file'){//刪除檔案
 			$select=query("SELECT * FROM `news` WHERE `no` = '{$no}' LIMIT 1");
-			list($no,$cls,$main,$things,$file,$dir,$size,$addDate,$editDate,$ip) = mysql_fetch_array($select,MYSQL_BOTH);
+			list($no,$cls,$main,$movehings,$file,$dir,$size,$addDate,$editDate,$ip) = mysql_fetch_array($select,MYSQL_BOTH);
 			unlink(iconv('utf-8','big5',"files/{$dir}/{$file}"));
 			RmDir("files/{$dir}");
 			query("UPDATE `news` SET `_file`='',`_dir`='',`_size`='' WHERE `no`='{$no}' LIMIT 1");
@@ -283,17 +283,17 @@ if(@$_SESSION['login']==1){//登入認證
 			@$dir=$_POST['dir'];
 			@$fileName=$_POST['fileName'];
 			@$main=$_POST['main'];
-			@$things=$_POST['things'];
+			@$movehings=$_POST['things'];
 			@$size=$_POST['size'];
 			@$cls=$_POST['cls'];
 			$ip=getip();
-			if(query("UPDATE `news` SET `_class`='{$cls}',`_main`='{$main}',`_things`='{$things}',`_file`='{$fileName}',`_dir`='{$dir}',`_size`='{$size}',`_ip`='{$ip}' WHERE `no`='{$no}'"))
+			if(query("UPDATE `news` SET `_class`='{$cls}',`_main`='{$main}',`_things`='{$movehings}',`_file`='{$fileName}',`_dir`='{$dir}',`_size`='{$size}',`_ip`='{$ip}' WHERE `no`='{$no}'"))
 				js::usejs("opener.location.href='index.php?news'; alert(\"公告修改成功！\"); window.close();");
 			else
 				js::usejs("alert('公告修改失敗！請聯絡網站設計人員！'); window.close();");
 		}
 	}
-	else if($aa == 8){//修改中心介紹
+	else if($action == 8){//修改中心介紹
 		@$main=$_POST['main'];
 		@$contect=$_POST['contect'];
 		@$mainColor=$_POST['mainColor'];
@@ -303,17 +303,17 @@ if(@$_SESSION['login']==1){//登入認證
 		else
 			js::usejs("alert('修改失敗！請聯絡網站設計人員！'); window.close();");
 	}
-	else if($aa == 9){//修改中心介紹相片
+	else if($action == 9){//修改中心介紹相片
 		@$file=$_FILES['userfile']['tmp_name'];
 		if(is_uploaded_file($file)){
 			//刪除原來的
 			@$no=$_POST['no'];
 			@$dir=$_POST['dir'];
 			@$fileName=$_POST['file'];
-			@$typ=$_POST['typ'];
+			@$moveyp=$_POST['typ'];
 			if($dir){
-				unlink(iconv('utf-8','big5',"photos/{$typ}/{$dir}/{$fileName}"));
-				RmDir("photos/{$typ}/{$dir}");
+				unlink(iconv('utf-8','big5',"photos/{$moveyp}/{$dir}/{$fileName}"));
+				RmDir("photos/{$moveyp}/{$dir}");
 			}
 			query("DELETE FROM `tvboard` WHERE `no`='{$no}'");
 			//建立新的
@@ -325,8 +325,8 @@ if(@$_SESSION['login']==1){//登入認證
 			$date=date("Y-m-d");
 			$fileName=$_FILES['userfile']['name'];
 			$size=$_FILES['userfile']['size'];
-			mkdir("photos/{$typ}/".$dir);//建目錄
-			if(move_uploaded_file($file,iconv('utf-8','big5',"photos/{$typ}/{$dir}/{$fileName}"))){//建檔
+			mkdir("photos/{$moveyp}/".$dir);//建目錄
+			if(move_uploaded_file($file,iconv('utf-8','big5',"photos/{$moveyp}/{$dir}/{$fileName}"))){//建檔
 				query("INSERT INTO `tvboard`(`_dir`,`_file`,`_size`,`_addDate`,`_class`,`_order`,`_how`,`_ip`) VALUES('{$dir}','{$fileName}','{$size}','{$date}','{$class}','{$order}','{$how}','{$ip}')");//寫入資料庫
 				js::usejs("alert('修改成功！'); opener.location.href='index.php?intro'; location.href='window.php?aa=7'");
 			}else
@@ -334,7 +334,7 @@ if(@$_SESSION['login']==1){//登入認證
 		}else
 			js::usejs("alert('請選擇相片！'); history.go(-1);");
 	}
-	else if($aa == 10){//修改成立宗旨
+	else if($action == 10){//修改成立宗旨
 		@$contect=$_POST['colContext'];
 		if(!$contect){
 			js::usejs('alert("內容不可為空！"); history.go(-1);');
@@ -345,16 +345,16 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("修改失敗！請聯絡網站設計人員！"); history.go(-1);');
 		}
 	}
-	else if($aa == 11){//處理QA
+	else if($action == 11){//處理QA
 		@$no=$_POST['no'];
-		@$t=$_GET['t'];//1刪除2修改3新增
-		if($t==1){//刪除
+		@$move=$_GET['t'];//1刪除2修改3新增
+		if($move==1){//刪除
 			if(query("DELETE FROM `intro` WHERE `no`='{$no}'"))
 				js::usejs('alert("刪除成功！");');
 			else
 				js::usejs('alert("刪除失敗！請聯絡網站設計人員！"); history.go(-1);');
 		}
-		else if($t==2){//修改
+		else if($move==2){//修改
 			@$main=$_POST['main'];
 			@$contect=$_POST['contect'];
 			if($main && $contect){//都有內容
@@ -366,7 +366,7 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("不可有空欄位！"); history.go(-1);');
 			}
 		}
-		else if($t==3){//新增
+		else if($move==3){//新增
 			@$main=$_POST['main'];
 			@$contect=$_POST['contect'];
 			if($main && $contect){//都有內容
@@ -380,9 +380,9 @@ if(@$_SESSION['login']==1){//登入認證
 		}
 		js::usejs('opener.location.href="index.php?intro3"; history.go(-1); ');
 	}
-	else if($aa == 12){//處理相關辦法
-		$t=$_GET['t'];//1新增2修改3刪除4修改刪檔
-		if($t==1){//新增
+	else if($action == 12){//處理相關辦法
+		$move=$_GET['t'];//1新增2修改3刪除4修改刪檔
+		if($move==1){//新增
 			@$main=$_POST['_main'];
 			@$how=$_POST['how'];
 			if($main && $how){//都有值
@@ -400,7 +400,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs('alert("不可有空欄位！"); history.go(-1);');
 		}
-		else if($t==2){//修改
+		else if($move==2){//修改
 			@$no=$_POST['no'];
 			@$how=$_POST['how'];
 			@$main=$_POST['_main'];
@@ -427,14 +427,14 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs("alert('不可有空欄位！'); history.go(-1);");
 		}
-		else if($t==3){//刪除
+		else if($move==3){//刪除
 			@$no=$_POST['no'];
 			if(query("DELETE FROM `met` WHERE `no`='{$no}' LIMIT 1")){
 				js::usejs("alert('刪除成功！'); opener.location.href='index.php?met'; window.close();");
 			}else
 				js::usejs("alert('刪除失敗！請聯絡網站設計人員！'); history.go(-1);");
 		}
-		else if($t==4){//修改刪檔
+		else if($move==4){//修改刪檔
 			$no=$_GET['no'];
 			$res=query("SELECT `_dir`,`_file` FROM `met` WHERE `no`='{$no}' LIMIT 1");
 			$row=mysql_fetch_array($res);
@@ -446,9 +446,9 @@ if(@$_SESSION['login']==1){//登入認證
 			js::usejs("location.href='window.php?aa=11&no={$no}'");
 		}
 	}
-	else if($aa == 13){//處理表單下載
-		$t=$_GET['t'];//1新增小項2修改3刪除4新增大項5修改大項6刪除大項
-		if($t==1){//新增小項
+	else if($action == 13){//處理表單下載
+		$move=$_GET['t'];//1新增小項2修改3刪除4新增大項5修改大項6刪除大項
+		if($move==1){//新增小項
 			@$main=$_POST['_main'];
 			@$how=$_POST['how'];
 			@$no=$_POST['no'];
@@ -470,7 +470,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs('alert("不可有空欄位！"); history.go(-1);');
 		}
-		else if($t==2){//修改
+		else if($move==2){//修改
 			@$main=$_POST['_main'];
 			@$how=$_POST['how'];
 			if($main && $how){//皆有填
@@ -506,7 +506,7 @@ if(@$_SESSION['login']==1){//登入認證
 			}else
 				js::usejs('alert("不可有空欄位！"); history.go(-1);');
 		}
-		else if($t==3){//刪除
+		else if($move==3){//刪除
 			@$no=$_POST['no'];
 			$res=query("SELECT * FROM `dow` WHERE `no`='{$no}' LIMIT 1");
 			if($row=mysql_fetch_array($res)){
@@ -523,20 +523,20 @@ if(@$_SESSION['login']==1){//登入認證
 			}else//無資料
 				exit;
 		}
-		else if($t==4){//新增大項
+		else if($move==4){//新增大項
 			if($name=$_POST['name']){
 				query("INSERT INTO `dow`(`_main`,`_to`) VALUES('{$name}','0')");
 				js::usejs('opener.location.href="index.php?dow"; history.go(-1);');
 			}else
 				js::usejs('history.go(-1);');
 		}
-		else if($t==5){//修改大項
+		else if($move==5){//修改大項
 			@$no=$_POST['no'];
 			@$main=$_POST['_main'];
 			query("UPDATE `dow` SET `_main`='{$main}' WHERE `no`='{$no}'");
 			js::usejs('opener.location.href="index.php?dow"; history.go(-1);');
 		}
-		else if($t==6){//刪除大項
+		else if($move==6){//刪除大項
 			@$no=$_POST['no'];
 			//刪小項
 			$res=query("SELECT * FROM `dow` WHERE `_to`='{$no}'");
@@ -553,7 +553,7 @@ if(@$_SESSION['login']==1){//登入認證
 			js::usejs('opener.location.href="index.php?dow"; history.go(-1);');
 		}
 	}
-	else if($aa == 14){//刪除留言
+	else if($action == 14){//刪除留言
 		@$no=$_GET['no'];
 		//刪檔
 		$res=query("SELECT * FROM `message` WHERE `_reTo`='{$no}' AND `_file` IS NOT NULL");
@@ -597,10 +597,10 @@ if(@$_SESSION['login']==1){//登入認證
 			}
 		}
 	}
-	else if($aa == 15){//修改成員介紹
-		$t=$_GET['t'];//1內容2照片3新增4刪除
+	else if($action == 15){//修改成員介紹
+		$move=$_GET['t'];//1內容2照片3新增4刪除
 		@$no=$_GET['no'];
-		if($t==1){//內容
+		if($move==1){//內容
 			@$main=$_POST['name'];//名稱
 			@$position=$_POST['position'];//職稱
 			@$contect=$_POST['contect'];//內容
@@ -613,7 +613,7 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("修改失敗！請聯絡網站設計人員！"); history.go(-1);');
 			}
 		}
-		else if($t==2){//照片
+		else if($move==2){//照片
 			//刪除舊的照片
 			$res=(query("SELECT `_dir`,`_photo` FROM `intro` WHERE `no`='{$no}'"));
 			$row=mysql_fetch_array($res);
@@ -638,7 +638,7 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("修改失敗！請聯絡網站設計人員！"); history.go(-1);');
 			}
 		}
-		else if($t==3){//新增
+		else if($move==3){//新增
 			$file=$_FILES['userfile']['tmp_name'];
 			if(is_uploaded_file($file)){
 				$main=$_POST['name'];//名稱
@@ -660,20 +660,20 @@ if(@$_SESSION['login']==1){//登入認證
 				js::usejs('alert("請上傳照片！"); history.go(-1);');
 			}
 		}
-		else if($t==4){//刪除
+		else if($move==4){//刪除
 			if(query("DELETE FROM `intro` WHERE `no`='{$no}' LIMIT 1"))
 				js::usejs('alert("刪除成功！"); opener.location.href="index.php?intro2"; window.close();');
 			else
 				js::usejs('alert("刪除失敗！請聯絡網站設計人員！"); history.go(-1);');
 		}
 	}
-	else if($aa == 16){//處理學習資源
+	else if($action == 16){//處理學習資源
 		$n=$_GET['n'];//1新增大項2刪除大項3修改大項4新增小項5修改小項6刪除小項
-		$t=$_GET['t'];//res res1 res2 ...
+		$move=$_GET['t'];//res res1 res2 ...
 		if($n==1){//新增大項
 			@$name=$_POST['name'];
 			if($name)//不為空
-				query("INSERT INTO `res`(`_name`,`_to`,`_class`) VALUES('{$name}','0','{$t}')");
+				query("INSERT INTO `res`(`_name`,`_to`,`_class`) VALUES('{$name}','0','{$move}')");
 			else
 				js::usejs('alert("欄位不可為空！"); history.go(-1);');
 		}
@@ -693,9 +693,9 @@ if(@$_SESSION['login']==1){//登入認證
 		else if($n==4){//新增小項
 			@$name=$_POST['name'];
 			@$url=$_POST['url'];
-			@$to=$_POST['to'];
+			@$moveo=$_POST['to'];
 			if($name && $url)
-				query("INSERT INTO `res`(`_name`,`_url`,`_to`,`_class`) VALUES('{$name}','{$url}','{$to}','{$t}')");
+				query("INSERT INTO `res`(`_name`,`_url`,`_to`,`_class`) VALUES('{$name}','{$url}','{$moveo}','{$move}')");
 			else
 				js::usejs('alert("欄位不可為空！"); history.go(-1);');
 		}
@@ -712,11 +712,11 @@ if(@$_SESSION['login']==1){//登入認證
 			@$no=$_POST['no'];
 			query("DELETE FROM `res` WHERE `no`='{$no}'");
 		}
-		js::usejs("opener.location.href='index.php?{$t}'; history.go(-1);");
+		js::usejs("opener.location.href='index.php?{$move}'; history.go(-1);");
 	}
-	else if($aa == 17){//修改、刪除新的服務項目
-		$t=$_GET['t'];//1修改2刪除
-		if($t==1){//修改
+	else if($action == 17){//修改、刪除新的服務項目
+		$move=$_GET['t'];//1修改2刪除
+		if($move==1){//修改
 			@$main=$_POST['_main'];
 			@$content=$_POST['content'];
 			@$no=$_POST['no'];
@@ -725,7 +725,7 @@ if(@$_SESSION['login']==1){//登入認證
 			else
 				js::usejs('alert("修改失敗！請聯絡網站設計人員！"); history.go(-1);');
 		}
-		else if($t==2){//刪除
+		else if($move==2){//刪除
 			@$no=$_POST['no'];
 			if(query("DELETE FROM `ser` WHERE `no`='{$no}' LIMIT 1"))
 				js::usejs("alert('刪除成功！'); opener.location.href='index.php?ser'; window.close();");

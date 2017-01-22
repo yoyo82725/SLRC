@@ -215,7 +215,7 @@ $(document).ready(function(){
 			$(this).css('color','#33D');//上字色
 			/*$.ajax({//ajax
 				type: "POST",
-				url: 'ajax.php?aa=1',
+				url: 'noRefresh.php?aa=1',
 				data: 'no='+a,
 				dataType: "html",
 				processData: false,
@@ -226,7 +226,7 @@ $(document).ready(function(){
 				}
 			});*/
 			$('#ser1_3Main').hide();
-			$('#ser1_3Main').load('ajax.php?aa=1&no='+a+'&rad='+Math.random());
+			$('#ser1_3Main').load('noRefresh.php?aa=1&no='+a+'&rad='+Math.random());
 			$('#ser1_3Main').fadeIn();
 		});
 	//學習資源修改

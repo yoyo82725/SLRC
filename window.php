@@ -147,10 +147,10 @@ $(document).ready(function(){
 <body>
 <?php
 require('function.php');
-@$b=$_GET['b'];
+@$adAction=$_GET['b'];
 if(@$_SESSION['login']==1){//管理權限
-	@$aa=$_GET['aa'];
-	if($aa == 1){//NEWS新增文章
+	@$action=$_GET['aa'];
+	if($action == 1){//NEWS新增文章
 		@$main = $_SESSION['_main'];
 		@$things = $_SESSION['_things'];
 		echo '<form action="window.php?aa=3" method="post" enctype="multipart/form-data">
@@ -182,7 +182,7 @@ if(@$_SESSION['login']==1){//管理權限
 		<center><input type='submit' value='　預覽文章　'></center>
 		</form>";
 	}
-	else if($aa == 2){//處理服務項目1234
+	else if($action == 2){//處理服務項目1234
 		$t=$_GET['t'];//ser1 ser2 ser3
 		if($t=='ser1_3'){//ser1_3成果發表
 			echo'<div class="aa10_2">
@@ -222,7 +222,7 @@ if(@$_SESSION['login']==1){//管理權限
 			}
 		}
 	}
-	else if($aa == 3){//NEWS預覽文章
+	else if($action == 3){//NEWS預覽文章
 		@$main=$_POST['main'];
 		@$things=$_POST['things'];
 		@$cls=$_POST['cls'];
@@ -311,7 +311,7 @@ if(@$_SESSION['login']==1){//管理權限
 		</td>
 		</tr></table>";
 	}
-	else if($aa == 4){//新增活動集錦
+	else if($action == 4){//新增活動集錦
 		$date=date('Y-m-d');
 		echo'<div class="b6_Frame">
 		<form action="action.php?aa=1&t=5" method="POST">
@@ -329,7 +329,7 @@ if(@$_SESSION['login']==1){//管理權限
 		</form>
 		</div>';
 	}
-	else if($aa == 5){//新增表單下載
+	else if($action == 5){//新增表單下載
 		$t=$_GET['t'];//1新增大項2修改+刪除3新增小項
 		if($t==1){//新增大項
 			echo'<div class="aa10_2"><form action="action.php?aa=13&t=4" method="POST">新增大項：<input type="text" name="name"/><input type="submit" value="新增"></form>
@@ -407,7 +407,7 @@ if(@$_SESSION['login']==1){//管理權限
 			}
 		}
 	}
-	else if($aa == 6){//修改NEWS
+	else if($action == 6){//修改NEWS
 		@$no=$_GET['no'];
 		$select=query("SELECT * FROM `news` WHERE `no` = '{$no}' LIMIT 1");
 		list($no,$cls,$main,$things,$file,$dir,$size,$addDate,$editDate,$ip) = mysql_fetch_array($select,MYSQL_BOTH);
@@ -446,7 +446,7 @@ if(@$_SESSION['login']==1){//管理權限
 		</center>
 		</form>';
 	}
-	else if($aa == 7){//修改中心介紹+照片
+	else if($action == 7){//修改中心介紹+照片
 		$res=query("SELECT * FROM `intro` WHERE `_class`='intro';");
 		$row=mysql_fetch_array($res,MYSQL_BOTH);
 		$main=$row['_main'];
@@ -495,7 +495,7 @@ if(@$_SESSION['login']==1){//管理權限
 			}
 		echo'</div>';
 	}
-	else if($aa == 8){//成立宗旨編輯
+	else if($action == 8){//成立宗旨編輯
 		$res=query("SELECT * FROM `intro` WHERE `no`='2';");
 		if($row=mysql_fetch_array($res,MYSQL_BOTH)){
 			$contect=$row['_contect'];
@@ -505,7 +505,7 @@ if(@$_SESSION['login']==1){//管理權限
 			</form>";
 		}
 	}
-	else if($aa == 9){//QA編輯
+	else if($action == 9){//QA編輯
 		$res=query("SELECT * FROM `intro` WHERE `_class`='QA' ORDER BY `no`");
 		echo'<div class="aa5_0">';
 		//新增
@@ -546,7 +546,7 @@ if(@$_SESSION['login']==1){//管理權限
 		}
 		echo'</div>';
 	}
-	else if($aa == 10){//新增相關辦法
+	else if($action == 10){//新增相關辦法
 		echo'<div class="b5_Frame">
 		<center><h3>新增辦法</h3></center>
 		<form action="action.php?aa=12&t=1" method="POST" enctype="multipart/form-data">
@@ -567,7 +567,7 @@ if(@$_SESSION['login']==1){//管理權限
 		</center>
 		</div></form>';
 	}
-	else if($aa == 11){//修改相關辦法
+	else if($action == 11){//修改相關辦法
 		$no=$_GET['no'];
 		$res=query("SELECT * FROM `met` WHERE `no`='{$no}' LIMIT 1");
 		if($row=mysql_fetch_array($res)){//有資料
@@ -603,7 +603,7 @@ if(@$_SESSION['login']==1){//管理權限
 			</div>';
 		}
 	}
-	else if($aa == 12){//編輯服務團隊
+	else if($action == 12){//編輯服務團隊
 		@$t1=$_GET['t1'];//1是內容2是照片3是新增
 		if($t1=='intro2_1'){//修改內容
 			@$t2=$_GET['t2'];//哪筆資料的編號
@@ -699,7 +699,7 @@ if(@$_SESSION['login']==1){//管理權限
 			</center>";
 		}
 	}
-	else if($aa == 13){//編輯學習資源大項
+	else if($action == 13){//編輯學習資源大項
 		@$t=$_GET['t'];//res res1 res2 ...
 		echo'<div class="aa10_2">
 		<form action="action.php?aa=16&n=1&t='.$t.'" method="POST">新增大項：<input type="text" name="name"/><input type="submit" value="新增"></form>
@@ -721,7 +721,7 @@ if(@$_SESSION['login']==1){//管理權限
 		}
 		echo'======================================================</div>';
 	}
-	else if($aa == 14){//學習資源大項以下
+	else if($action == 14){//學習資源大項以下
 		@$no=$_GET['no'];//大項的no
 		@$t=$_GET['t'];//res res1 res2 ...
 		$res=query("SELECT * FROM `res` WHERE `no`='{$no}' AND `_class`='{$t}' LIMIT 1");
@@ -764,7 +764,7 @@ if(@$_SESSION['login']==1){//管理權限
 			echo'======================================================</div>';
 		}
 	}
-	else if($aa == 15){//處理服務項目
+	else if($action == 15){//處理服務項目
 		$t=$_GET['t'];//1編輯簡介2新增簡介3編輯可刪的簡介
 		if($t==1){//編輯簡介
 			$no=$_GET['no'];
@@ -811,7 +811,7 @@ if(@$_SESSION['login']==1){//管理權限
 			}
 		}
 	}
-	else if($aa == 16){//編輯活動集錦文章
+	else if($action == 16){//編輯活動集錦文章
 		@$no=$_POST['no'];
 		$res=query("SELECT * FROM `act` WHERE `no`='{$no}' LIMIT 1");
 		if($row=mysql_fetch_array($res)){
@@ -839,7 +839,7 @@ if(@$_SESSION['login']==1){//管理權限
 			</form></div>';
 		}
 	}
-	else if($aa == 17){//成果發表大項以下
+	else if($action == 17){//成果發表大項以下
 		$no=$_GET['no'];//大項的no
 		$res=query("SELECT * FROM `ser` WHERE `no`='{$no}' AND `_class`='ser1_3' LIMIT 1");
 		if($row=mysql_fetch_array($res)){
@@ -865,7 +865,7 @@ if(@$_SESSION['login']==1){//管理權限
 			</div>';
 		}
 	}
-	else if($aa == 18){//成果發表內容修改&刪除
+	else if($action == 18){//成果發表內容修改&刪除
 		$no=$_GET['no'];
 		$res=query("SELECT * FROM `ser` WHERE `no`='{$no}' LIMIT 1");
 		if($row=mysql_fetch_array($res)){
@@ -899,7 +899,7 @@ if(@$_SESSION['login']==1){//管理權限
 		}
 	}
 }
-if($b == 1){//看NEWS文章
+if($adAction == 1){//看NEWS文章
 	@$no=$_GET['no'];
 	$select=query("SELECT * FROM `news` WHERE `no` = '{$no}' LIMIT 1");
 	list($no,$cls,$main,$things,$file,$dir,$size,$addDate,$editDate,$ip) = mysql_fetch_array($select,MYSQL_BOTH);
@@ -939,7 +939,7 @@ if($b == 1){//看NEWS文章
 		<input type='button' value='　刪除文章　' Onclick='if(confirm(\"確定刪除？\")){submit();}'>";
 	echo '</center>';
 }
-else if($b == 2){//搜索NEWS
+else if($adAction == 2){//搜索NEWS
 	@$t = $_GET['t'];
 	@$v = ($_GET['v'])?$_GET['v']:$_POST['v'];
 	$SelectResault = query("SELECT * FROM `news` WHERE `{$t}` like '%{$v}%' ORDER BY `no` DESC");
@@ -971,7 +971,7 @@ else if($b == 2){//搜索NEWS
 
 	echo '</table>';
 }
-else if($b == 3){//看留言板文章
+else if($adAction == 3){//看留言板文章
 	@$no=$_GET['no'];
 	$res=query("SELECT * FROM `message` WHERE `no`='{$no}' LIMIT 1;");
 	if($row=mysql_fetch_array($res)){//有資料
@@ -1081,7 +1081,7 @@ else if($b == 3){//看留言板文章
 		</form>";
 	echo'</div>';
 }
-else if($b == 4){//新增留言
+else if($adAction == 4){//新增留言
 	echo'<form action="action.php?b=14" method="POST" enctype="multipart/form-data">
 	<table width="70%" class="aa10_0" align="center" border="0">
 		<tr>
@@ -1106,7 +1106,7 @@ else if($b == 4){//新增留言
 	</center>
 	</form>";
 }
-else if($b == 5){//看相關辦法
+else if($adAction == 5){//看相關辦法
 	$no=$_GET['no'];
 	$res=query("SELECT * FROM `met` WHERE `no`='{$no}' LIMIT 1");
 	if(mysql_num_rows($res)==1){
@@ -1143,7 +1143,7 @@ else if($b == 5){//看相關辦法
 	}else//錯誤
 		exit;
 }
-else if($b == 6){//看活動集錦
+else if($adAction == 6){//看活動集錦
 	$no=$_GET['no'];
 	$res=query("SELECT * FROM `act` WHERE `no`='{$no}' LIMIT 1");
 	if($row=mysql_fetch_array($res)){//有資料
