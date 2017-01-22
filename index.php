@@ -11,10 +11,7 @@
 <!--css-->
 <link rel="stylesheet" type="text/css" href="css/Sstyle1.css"/>
 <link rel="stylesheet" type="text/css" href="css/orbit-1.2.3.css"/>
-<!--JQ-->
-<script type="text/javascript" src="js/jquery-1.7.2.js" ></script>
-<script type="text/javascript" src="js/jquery.orbit-1.2.3.min.js"></script>	
-<script type="text/javascript" src="js/SJS1.js" ></script>
+
 <title>聖約翰科技大學-學生學習資源中心</title>
 </head>
 <body>
@@ -99,5 +96,10 @@ Address: 499,Sec. 4, Tam King Road Tamsui, Taipei, Taiwan R.O.C</td></tr></table
 		</div>
 	</div>
 </div>
+
+<!--JS-->
+<script type="text/javascript" src="js/jquery-1.7.2.js" ></script>
+<script type="text/javascript" src="js/jquery.orbit-1.2.3.min.js"></script>	
+<script type="text/javascript" src="js/SJS1.js" ></script>
 </body>
 </html>
