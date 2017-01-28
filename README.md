@@ -6,7 +6,7 @@
 <li>無刷新(Refresh)為特色</li>
 <li>防範sql injection攻擊</li>
 <li>原生Html、Css、JQuery、PHP製成</li>
-<li>無遵守程式撰寫規範(當時還不知道)</li>
+<li>後台編輯功能20處</li>
 </ul>
 
 樣品連結：
